@@ -1,0 +1,42 @@
+# === Python (Кэш и компилированные файлы) ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# === Виртуальное окружение ===
+.venv/
+
+# === Чувствительные данные (Секреты) ===
+.env
+*.env
+.secrets
+certs/
+
+# === Базы данных ===
+*.sqlite3
+
+# === Медиафайлы и статика ===
+media/
+staticfiles/
+static_root/
+
+# === Логи и отчеты тестирования ===
+*.log
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# === Настройки IDE/Редактора ===
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# === Системные файлы ===
+.DS_Store
+Thumbs.db
