@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block title %}News Blog{% endblock %}</title>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'articles:home' %}">
+                    Главная
+                </a>
+            </li>
+            {% for category in menu_categories %}
+                <li>
+                    <a href="{% url 'articles:category_detail' category.slug %}">
+                        {{ category.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <p>© 2026 News Blog</p>
+</footer>
+
+</body>
+</html>

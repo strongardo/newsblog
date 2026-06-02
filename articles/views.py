@@ -2,10 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def home(request):
-    return HttpResponse("Hello, world. You're at the articles list page.")
+    return render(request, "articles/home.html")
 
 def article_detail(request, slug):
-    return HttpResponse("Hello, world. You're at the article detail page.")
+    return render(request, "articles/article_detail.html")
 
 def category_detail(request, slug):
-    return HttpResponse("Hello, world. You're at the category detail page.")
+    return render(request, "articles/category_detail.html")
