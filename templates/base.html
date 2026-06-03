@@ -4,37 +4,124 @@
     <meta charset="UTF-8">
 
     <title>{% block title %}News Blog{% endblock %}</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
 
-<header>
-    <nav>
-        <ul>
-            <li>
-                <a href="{% url 'articles:home' %}">
-                    Главная
-                </a>
-            </li>
-            {% for category in menu_categories %}
+<header class="bg-white border-b shadow-sm">
+
+    <div class="max-w-4xl mx-auto px-4">
+
+        <div class="flex items-center justify-between py-4">
+
+            <a
+                href="{% url 'articles:home' %}"
+                class="text-xl font-bold"
+            >
+                News Blog
+            </a>
+
+            <!-- Burger button -->
+            <button
+                id="menu-button"
+                class="md:hidden text-gray-700"
+            >
+                ☰
+            </button>
+
+            <!-- Desktop menu -->
+            <nav class="hidden md:block">
+                <ul class="flex items-center gap-4 text-sm font-medium">
+
+                    <li>
+                        <a
+                            href="{% url 'articles:home' %}"
+                            class="hover:text-blue-600"
+                        >
+                            Главная
+                        </a>
+                    </li>
+
+                    {% for category in menu_categories %}
+                        <li>
+                            <a
+                                href="{% url 'articles:category_detail' category.slug %}"
+                                class="hover:text-blue-600"
+                            >
+                                {{ category.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </nav>
+
+        </div>
+
+        <!-- Mobile menu -->
+        <nav
+            id="mobile-menu"
+            class="hidden md:hidden pb-4"
+        >
+            <ul class="flex flex-col gap-3 text-sm font-medium">
+
                 <li>
-                    <a href="{% url 'articles:category_detail' category.slug %}">
-                        {{ category.title }}
+                    <a
+                        href="{% url 'articles:home' %}"
+                        class="block hover:text-blue-600"
+                    >
+                        Главная
                     </a>
                 </li>
-            {% endfor %}
-        </ul>
-    </nav>
+
+                {% for category in menu_categories %}
+                    <li>
+                        <a
+                            href="{% url 'articles:category_detail' category.slug %}"
+                            class="block hover:text-blue-600"
+                        >
+                            {{ category.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </nav>
+
+    </div>
+
 </header>
 
-<main>
-    {% block content %}
-    {% endblock %}
+<main class="flex-1">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
 </main>
 
-<footer>
-    <p>© 2026 News Blog</p>
+<footer class="border-t bg-white">
+    <div class="max-w-4xl mx-auto px-4 py-6">
+
+        <p class="text-sm text-gray-500">
+            © 2026 News Blog
+        </p>
+
+    </div>
 </footer>
 
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>

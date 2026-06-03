@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ category.title }}</h1>
 
-    {% if articles %}
-        {% include 'articles/includes/article_list.html' %}
-    {% else %}
-        <p>Материалов пока нет</p>
-    {% endif %}
+    <h1 class="text-3xl font-bold mb-6">
+        {{ category.title }}
+    </h1>
+
+    {% include 'articles/includes/article_list.html' %}
+
 {% endblock %}
