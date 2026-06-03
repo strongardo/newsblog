@@ -19,6 +19,6 @@ def article_detail(request, slug):
 
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    articles = Article.objects.filter(category=category, is_published=True)
+    articles = Article.objects.filter(category=category, is_published=True).select_related('category')
     return render(request, "articles/category_detail.html",
                   {"articles": articles, "category": category})
