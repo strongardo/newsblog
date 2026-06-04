@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from rest_framework import generics
+from .serializers import CommentSerializer
 
-from .models import Article, Category
+from .models import Article, Category, Comment
 
 
 def home(request):
@@ -22,3 +24,20 @@ def category_detail(request, slug):
     articles = Article.objects.filter(category=category, is_published=True).select_related('category')
     return render(request, "articles/category_detail.html",
                   {"articles": articles, "category": category})
+
+
+class CommentAPIView(generics.ListCreateAPIView):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        return Comment.objects.filter(
+            article__slug=self.kwargs['slug']
+        )
+
+    def perform_create(self, serializer):
+        article = get_object_or_404(
+            Article,
+            slug=self.kwargs['slug']
+        )
+
+        serializer.save(article=article)
