@@ -1,28 +1,30 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {{ article.title }}
+{{ article.title }}
 {% endblock %}
 
 {% block content %}
 
-    <article class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+<article class="bg-white rounded-xl shadow-sm p-6 md:p-8">
 
-        <a
+    <a
             href="{% url 'articles:category_detail' article.category.slug %}"
             class="text-sm text-blue-600 hover:underline"
-        >
-            {{ article.category.title }}
-        </a>
+    >
+        {{ article.category.title }}
+    </a>
 
-        <h1 class="text-3xl font-bold mt-3 mb-6">
-            {{ article.title }}
-        </h1>
+    <h1 class="text-3xl font-bold mt-3 mb-6">
+        {{ article.title }}
+    </h1>
 
-        <div class="prose max-w-none text-gray-700 leading-7">
-            {{ article.content }}
-        </div>
+    <div class="prose max-w-none text-gray-700 leading-7">
+        {{ article.content }}
+    </div>
 
-    </article>
+</article>
+
+{% include 'articles/includes/comments_section.html' %}
 
 {% endblock %}
