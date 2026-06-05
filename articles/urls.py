@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('articles/<slug:slug>/', views.article_detail, name='article_detail'),
     path('categories/<slug:slug>/', views.category_detail, name='category_detail'),
+    path('search/', views.search_view, name='search'),
 
     path(
         'api/articles/<slug:slug>/comments/',

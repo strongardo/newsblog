@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Поиск
+{% endblock %}
+
+{% block content %}
+
+<div class="mb-8">
+
+    <h1 class="text-3xl font-bold mb-4">
+        Поиск по сайту
+    </h1>
+
+    <form
+            action="{% url 'articles:search' %}"
+            method="get"
+            class="flex gap-2"
+    >
+        <input
+                type="text"
+                name="q"
+                value="{{ query }}"
+                placeholder="Введите запрос..."
+                class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+
+        <button
+                type="submit"
+                class="px-5 py-2 bg-gray-100 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+        >
+            Найти
+        </button>
+    </form>
+
+</div>
+
+{% if query %}
+
+<div class="mb-6">
+
+    <h2 class="text-xl font-semibold mb-2">
+        Результаты поиска
+    </h2>
+
+    <p class="text-gray-600">
+        По запросу
+        <span class="font-medium">«{{ query }}»</span>
+        найдено материалов:
+        <span class="font-medium">{{ articles.count }}</span>
+    </p>
+
+</div>
+
+{% if articles %}
+{% include 'articles/includes/article_list.html' %}
+{% else %}
+<div class="bg-gray-50 border rounded-lg p-6 text-center">
+    <p class="text-gray-600">
+        Ничего не найдено
+    </p>
+</div>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

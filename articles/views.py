@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from .serializers import CommentSerializer
+from django.db.models import Q
 
 from .models import Article, Category, Comment
 
@@ -41,3 +42,23 @@ class CommentAPIView(generics.ListCreateAPIView):
         )
 
         serializer.save(article=article)
+
+
+def search_view(request):
+    query = request.GET.get('q', '').strip()
+
+    articles = Article.objects.none()
+
+    if query:
+        articles = Article.objects.filter(
+            is_published=True
+        ).filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query)
+        ).distinct()
+
+    return render(request, 'articles/search.html',
+                  {
+                      'articles': articles,
+                      'query': query,
+                  })
