@@ -26,6 +26,11 @@ class Article(models.Model):
         on_delete=models.PROTECT,
         related_name='articles'
     )
+    image = models.ImageField(
+        verbose_name='Фото',
+        upload_to='articles/',
+        blank=True
+    )
 
     class Meta:
         verbose_name = 'Статья'
