@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 {{ article.title }}
 {% endblock %}
 
 {% block content %}
 
-<article class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+<article class="bg-white rounded-xl shadow-sm p-6 md:p-8" data-slug="{{ article.slug }}">
 
     <a
             href="{% url 'articles:category_detail' article.category.slug %}"
@@ -27,4 +29,8 @@
 
 {% include 'articles/includes/comments_section.html' %}
 
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}

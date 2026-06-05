@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -113,15 +115,8 @@
     </div>
 </footer>
 
-<script>
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>
-
+<script src="{% static 'js/mobile_menu.js' %}"></script>
+{% block scripts %}{% endblock %}
 <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>

@@ -32,7 +32,7 @@ class CommentAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Comment.objects.filter(
             article__slug=self.kwargs['slug']
-        )
+        ).order_by('-created_at')
 
     def perform_create(self, serializer):
         article = get_object_or_404(
