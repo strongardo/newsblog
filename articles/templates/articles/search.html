@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Поиск
+{% if query %}
+Поиск: {{ query }} | News Blog
+{% else %}
+Поиск | News Blog
+{% endif %}
+{% endblock %}
+
+{% block robots %}
+<meta name="robots" content="noindex,nofollow">
 {% endblock %}
 
 {% block content %}

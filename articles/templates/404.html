@@ -4,6 +4,10 @@
 404 — Страница не найдена
 {% endblock %}
 
+{% block robots %}
+<meta name="robots" content="noindex,nofollow">
+{% endblock %}
+
 {% block content %}
 
 <div class="bg-white rounded-xl shadow-sm p-8 text-center">

@@ -3,8 +3,39 @@
 {% load static %}
 
 {% block title %}
+{{ article.title }} | News Blog
+{% endblock %}
+
+{% block meta_description %}
+{{ article.content|truncatechars:160 }}
+{% endblock %}
+
+{% block og_title %}
 {{ article.title }}
 {% endblock %}
+
+{% block og_description %}
+{{ article.content|truncatechars:160 }}
+{% endblock %}
+
+{% block og_type %}
+<meta property="og:type" content="article">
+{% endblock %}
+
+{% block og_image %}
+{% if article.image %}
+<meta
+    property="og:image"
+    content="{{ request.scheme }}://{{ request.get_host }}{{ article.image.url }}"
+>
+{% else %}
+<meta
+    property="og:image"
+    content="{{ request.scheme }}://{{ request.get_host }}/static/images/og-default.jpg"
+>
+{% endif %}
+{% endblock %}
+
 
 {% block content %}
 

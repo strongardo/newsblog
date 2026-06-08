@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ category.title }}
+{{ category.title }} | News Blog
+{% endblock %}
+
+{% block meta_description %}
+Последние новости категории «{{ category.title }}» на News Blog
+{% endblock %}
+
+{% block og_title %}
+{{ category.title }} | News Blog
+{% endblock %}
+
+{% block og_description %}
+Последние новости категории «{{ category.title }}» на News Blog
 {% endblock %}
 
 {% block content %}
