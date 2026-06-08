@@ -45,7 +45,7 @@ function renderComments(comments) {
 
         commentsContainer.innerHTML = `
             <p class="text-gray-500">
-                Пока нет комментариев.
+                Пока нет комментариев
             </p>
         `;
 
@@ -104,7 +104,7 @@ async function loadComments() {
 
         commentsContainer.innerHTML = `
             <p class="text-red-500">
-                Не удалось загрузить комментарии.
+                Не удалось загрузить комментарии
             </p>
         `;
     }

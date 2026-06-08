@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+404 — Страница не найдена
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-white rounded-xl shadow-sm p-8 text-center">
+
+    <div class="text-6xl font-bold text-gray-300 mb-4">
+        404
+    </div>
+
+    <h1 class="text-3xl font-bold mb-3">
+        Страница не найдена
+    </h1>
+
+    <p class="text-gray-600 mb-8">
+        Возможно, материал был удалён, перемещён или ссылка содержит ошибку
+    </p>
+
+    <a
+        href="{% url 'articles:home' %}"
+        class="inline-block px-5 py-2 bg-gray-100 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+    >
+        На главную
+    </a>
+
+</div>
+
+{% endblock %}
