@@ -10,6 +10,15 @@
         Все статьи
     </h1>
 
+{% if articles %}
     {% include 'articles/includes/article_list.html' %}
+    {% include 'articles/includes/pagination.html' %}
+{% else %}
+<div class="bg-gray-50 border rounded-lg p-6 text-center">
+    <p class="text-gray-600">
+        Материалов пока нет
+    </p>
+</div>
+{% endif %}
 
 {% endblock %}

@@ -1,0 +1,59 @@
+{% load query_transform %}
+
+<nav class="mt-10 flex justify-center">
+
+    <ul class="flex items-center gap-2">
+
+        {% if articles.has_previous %}
+            <li>
+                <a
+                    fref="?{% query_transform page=articles.previous_page_number %}"
+
+                    class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition"
+                >
+                    ← Назад
+                </a>
+            </li>
+        {% endif %}
+
+        {% for num in articles.paginator.page_range %}
+
+            {% if articles.number == num %}
+
+                <li>
+                    <span
+                        class="px-4 py-2 bg-gray-800 text-white rounded-lg"
+                    >
+                        {{ num }}
+                    </span>
+                </li>
+
+            {% elif num > articles.number|add:"-3" and num < articles.number|add:"3" %}
+
+                <li>
+                    <a
+                        href="?{% query_transform page=num %}"
+                        class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition"
+                    >
+                        {{ num }}
+                    </a>
+                </li>
+
+            {% endif %}
+
+        {% endfor %}
+
+        {% if articles.has_next %}
+            <li>
+                <a
+                    fref="?{% query_transform page=articles.next_page_number %}"
+                    class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition"
+                >
+                    Вперёд →
+                </a>
+            </li>
+        {% endif %}
+
+    </ul>
+
+</nav>

@@ -40,20 +40,14 @@
 <div class="mb-6">
 
     <h2 class="text-xl font-semibold mb-2">
-        Результаты поиска
+        Результаты поиска по запросу «{{ query }}»
     </h2>
-
-    <p class="text-gray-600">
-        По запросу
-        <span class="font-medium">«{{ query }}»</span>
-        найдено материалов:
-        <span class="font-medium">{{ articles.count }}</span>
-    </p>
 
 </div>
 
 {% if articles %}
 {% include 'articles/includes/article_list.html' %}
+{% include 'articles/includes/pagination.html' %}
 {% else %}
 <div class="bg-gray-50 border rounded-lg p-6 text-center">
     <p class="text-gray-600">

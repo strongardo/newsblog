@@ -5,10 +5,12 @@ from .serializers import CommentSerializer
 from django.db.models import Q
 
 from .models import Article, Category, Comment
+from .utils import paginate_queryset
 
 
 def home(request):
-    articles = Article.objects.filter(is_published=True).select_related('category')
+    queryset = Article.objects.filter(is_published=True).select_related('category')
+    articles = paginate_queryset(request, queryset, per_page=5)
     return render(request, "articles/home.html", {"articles": articles})
 
 
@@ -22,7 +24,8 @@ def article_detail(request, slug):
 
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    articles = Article.objects.filter(category=category, is_published=True).select_related('category')
+    queryset = Article.objects.filter(category=category, is_published=True).select_related('category')
+    articles = paginate_queryset(request, queryset, per_page=5)
     return render(request, "articles/category_detail.html",
                   {"articles": articles, "category": category})
 
@@ -47,15 +50,17 @@ class CommentAPIView(generics.ListCreateAPIView):
 def search_view(request):
     query = request.GET.get('q', '').strip()
 
-    articles = Article.objects.none()
+    queryset = Article.objects.none()
 
     if query:
-        articles = Article.objects.filter(
+        queryset = Article.objects.filter(
             is_published=True
         ).filter(
             Q(title__icontains=query) |
             Q(content__icontains=query)
         ).distinct()
+
+    articles = paginate_queryset(request, queryset, per_page=5)
 
     return render(request, 'articles/search.html',
                   {

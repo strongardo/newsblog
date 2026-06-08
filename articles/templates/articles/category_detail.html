@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {{ category.title }}
+{{ category.title }}
 {% endblock %}
 
 {% block content %}
 
-    <h1 class="text-3xl font-bold mb-6">
-        {{ category.title }}
-    </h1>
+<h1 class="text-3xl font-bold mb-6">
+    {{ category.title }}
+</h1>
 
+{% if articles %}
     {% include 'articles/includes/article_list.html' %}
+    {% include 'articles/includes/pagination.html' %}
+{% else %}
+<div class="bg-gray-50 border rounded-lg p-6 text-center">
+    <p class="text-gray-600">
+        В этой категории материалов пока нет
+    </p>
+</div>
+{% endif %}
 
 {% endblock %}
