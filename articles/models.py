@@ -1,9 +1,18 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
     title = models.CharField(verbose_name='Название', max_length=100)
     slug = models.SlugField(verbose_name='Слаг', max_length=100, unique=True)
+
+    def get_absolute_url(self):
+        return reverse(
+            'articles:category_detail',
+            kwargs={
+                'slug': self.slug,
+            }
+        )
 
     class Meta:
         verbose_name = 'Категория'
@@ -31,6 +40,14 @@ class Article(models.Model):
         upload_to='articles/',
         blank=True
     )
+
+    def get_absolute_url(self):
+        return reverse(
+            'articles:article_detail',
+            kwargs={
+                'slug': self.slug,
+            }
+        )
 
     class Meta:
         verbose_name = 'Статья'

@@ -9,7 +9,7 @@ from .utils import paginate_queryset
 
 
 def home(request):
-    queryset = Article.objects.filter(is_published=True).select_related('categoryу')
+    queryset = Article.objects.filter(is_published=True).select_related('category')
     articles = paginate_queryset(request, queryset, per_page=5)
     return render(request, "articles/home.html", {"articles": articles})
 
