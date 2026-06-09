@@ -40,3 +40,5 @@ htmlcov/
 # === Системные файлы ===
 .DS_Store
 Thumbs.db
+
+tailwindcss-windows-x64.exe

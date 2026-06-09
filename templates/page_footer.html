@@ -1,0 +1,104 @@
+{% load static %}
+
+<footer class="border-t border-slate-200 bg-white">
+    <div class="max-w-4xl mx-auto px-4 py-10">
+
+        <div class="flex flex-col md:flex-row md:justify-between gap-8">
+
+            <div>
+                <a href="{% url 'articles:home' %}" class="flex items-center gap-2">
+                    <img
+                            src="{% static 'images/logo.svg' %}"
+                            alt="WebCraft"
+                            class="h-10 w-auto"
+                    />
+                </a>
+
+                <p class="mt-2 text-sm text-gray-600 max-w-md">
+                    Онлайн-журнал о веб-разработке и современных технологиях.
+                    Новости IT, статьи по Python, Django, JavaScript,
+                    Frontend и Backend разработке.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-medium text-gray-900">
+                    Разделы
+                </h4>
+
+                <ul class="mt-2 space-y-1 text-sm text-gray-600">
+                    {% for category in menu_categories %}
+                    <li>
+                        <a
+                                href="{{ category.get_absolute_url }}"
+                                class="hover:text-blue-600"
+                        >
+                            {{ category.title }}
+                        </a>
+                    </li>
+                    {% empty %}
+                    <li>
+                        Категории отсутствуют
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-medium text-gray-900">
+                    Контакты
+                </h4>
+
+                <ul class="mt-2 space-y-3 text-sm text-gray-600">
+
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="mail" class="size-5"></i>
+
+                        <a href="mailto:strongardo@gmail.com" class="hover:text-blue-600">
+                            strongardo@gmail.com
+                        </a>
+                    </li>
+
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="github" class="size-5"></i>
+
+                        <a href="https://github.com/strongardo"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="hover:text-blue-600">
+                            @strongardo
+                        </a>
+                    </li>
+
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="send" class="size-5"></i>
+
+                        <a href="https://t.me/strongardo"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="hover:text-blue-600">
+                            @strongardo
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="border-t border-slate-200 mt-8 pt-6 flex flex-col md:flex-row md:justify-between gap-3">
+
+            <p class="text-sm text-gray-500">
+                © 2026 WebCraft. Все права защищены.
+            </p>
+
+            <p class="text-sm text-gray-500">
+                Создано с ❤️ на Django и Tailwind CSS
+            </p>
+
+        </div>
+
+    </div>
+</footer>
