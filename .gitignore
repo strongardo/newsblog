@@ -18,8 +18,11 @@ certs/
 
 # === Медиафайлы и статика ===
 media/
-staticfiles/
 static_root/
+mediafiles/*
+staticfiles/*
+!mediafiles/.gitkeep
+!staticfiles/.gitkeep
 
 # === Логи и отчеты тестирования ===
 *.log

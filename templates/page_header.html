@@ -62,7 +62,10 @@
                         {{ category.title }}
                     </a>
                 </li>
+                {% empty %}
+                <li>Категории отсутствуют</li>
                 {% endfor %}
+
 
             </ul>
 
