@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load markdown_extras %}
+
 {% block title %}
 {{ article.title }} | WebCraft
 {% endblock %}
@@ -40,11 +42,6 @@
 {% block content %}
 
 <article class="bg-white rounded-xl shadow-sm p-6 md:p-8" data-slug="{{ article.slug }}">
-
-    <h1 class="text-3xl font-bold text-gray-900 mt-4">
-        {{ article.title }}
-    </h1>
-
     <div class="mt-3">
         <a
                 href="{% url 'articles:category_detail' article.category.slug %}"
@@ -54,6 +51,10 @@
         </a>
     </div>
 
+    <h1 class="text-3xl font-bold text-gray-900 mt-4 mb-6">
+        {{ article.title }}
+    </h1>
+
     {% if article.image %}
     <img
             src="{{ article.image.url }}"
@@ -62,8 +63,8 @@
     >
     {% endif %}
 
-    <div class="text-gray-700 leading-8">
-        {{ article.content }}
+    <div class="article-content max-w-4xl mx-auto">
+        {{ article.content|markdownify|safe }}
     </div>
 
 </article>
