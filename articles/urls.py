@@ -13,5 +13,7 @@ urlpatterns = [
         'api/articles/<slug:slug>/comments/',
         views.CommentAPIView.as_view(),
         name='article_comments_api'
-    )
+    ),
+
+    path("health/", views.health),
 ]
